@@ -1,4 +1,4 @@
-  {
+{
   "name": "scc_control",
   "version": "1.0.0",
   "main": "index.js",
@@ -8,5 +8,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
