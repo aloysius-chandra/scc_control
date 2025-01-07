@@ -1,100 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <title>Simple PWA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA - Data Modbus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    input {
-      width: 100%;
-      padding: 8px;
-      font-size: 16px;
-    }
-    input[readonly] {
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-    }
-  </style>
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-container input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        .form-container input[readonly] {
+            background-color: #e0e0e0;
+        }
+    </style>
 </head>
-
 <body>
-  <h1>Readonly Modbus Variables</h1>
-  <form id="modbusForm">
-    <!-- Dynamic inputs will be inserted here -->
-  </form>
-  <script>
-    // Define the ModbusVariable array
-    const modbusVariables = [
-      { name: "Over temperature inside the device", value: "0" },
-      { name: "Day/Night", value: "0" },
-      { name: "PV array input voltage", value: "0" },
-      { name: "PV array input current", value: "0" },
-      { name: "PV array input power", value: "0" },
-      { name: "Load voltage", value: "0" },
-      { name: "Load current", value: "0" },
-      { name: "Load power", value: "0" },
-      { name: "Battery temperature", value: "0" },
-      { name: "Device temperature", value: "0" },
-      { name: "Battery soc", value: "0" },
-      { name: "Battery's real rated voltage", value: "0" },
-      { name: "Battery status", value: "0" },
-      { name: "Charging equipment status", value: "0" },
-      { name: "Discharging equipment status", value: "0" },
-      { name: "Maximum battery voltage today", value: "0" },
-      { name: "Minimum battery voltage today", value: "0" },
-      { name: "Consumed energy today", value: "0" },
-      { name: "Consumed energy this month", value: "0" },
-      { name: "Consumed energy this year", value: "0" },
-      { name: "Total consumed energy", value: "0" },
-      { name: "Generated energy today", value: "0" },
-      { name: "Generated energy this month", value: "0" },
-      { name: "Generated energy this year", value: "0" },
-      { name: "Total generated energy", value: "0" },
-      { name: "Battery voltage", value: "0" },
-      { name: "Battery current", value: "0" },
-    ];
+    <h1>Modbus Data from ESP32</h1>
+    <div class="form-container" id="data-form">
+      <label for="input-A1">A1</label>
+      <input type="text" id="input-A1" readonly>
+      
+      <label for="input-A2">A2</label>
+      <input type="text" id="input-A2" readonly>
+      
+      <label for="input-A3">A3</label>
+      <input type="text" id="input-A3" readonly>
+      
+      <label for="input-A4">A4</label>
+      <input type="text" id="input-A4" readonly>
+      
+      <label for="input-A5">A5</label>
+      <input type="text" id="input-A5" readonly>
+      
+      <label for="input-A7">A7</label>
+      <input type="text" id="input-A7" readonly>
+      
+      <label for="input-A8">A8</label>
+      <input type="text" id="input-A8" readonly>
+      
+      <label for="input-A9">A9</label>
+      <input type="text" id="input-A9" readonly>
+      
+      <label for="input-A11">A11</label>
+      <input type="text" id="input-A11" readonly>
+      
+      <label for="input-A12">A12</label>
+      <input type="text" id="input-A12" readonly>
+      
+      <label for="input-A13">A13</label>
+      <input type="text" id="input-A13" readonly>
+      
+      <label for="input-A14">A14</label>
+      <input type="text" id="input-A14" readonly>
+      
+      <label for="input-A15">A15</label>
+      <input type="text" id="input-A15" readonly>
+      
+      <label for="input-A16">A16</label>
+      <input type="text" id="input-A16" readonly>
+      
+      <label for="input-A17">A17</label>
+      <input type="text" id="input-A17" readonly>
+      
+      <label for="input-A18">A18</label>
+      <input type="text" id="input-A18" readonly>
+      
+      <label for="input-A19">A19</label>
+      <input type="text" id="input-A19" readonly>
+      
+      <label for="input-A20">A20</label>
+      <input type="text" id="input-A20" readonly>
+      
+      <label for="input-A22">A22</label>
+      <input type="text" id="input-A22" readonly>
+      
+      <label for="input-A24">A24</label>
+      <input type="text" id="input-A24" readonly>
+      
+      <label for="input-A26">A26</label>
+      <input type="text" id="input-A26" readonly>
+      
+      <label for="input-A28">A28</label>
+      <input type="text" id="input-A28" readonly>
+      
+      <label for="input-A30">A30</label>
+      <input type="text" id="input-A30" readonly>
+      
+      <label for="input-A32">A32</label>
+      <input type="text" id="input-A32" readonly>
+      
+      <label for="input-A34">A34</label>
+      <input type="text" id="input-A34" readonly>
+      
+      <label for="input-A36">A36</label>
+      <input type="text" id="input-A36" readonly>
+      
+      <label for="input-A37">A37</label>
+      <input type="text" id="input-A37" readonly>      
+    </div>
 
-    // Select the form element
-    const form = document.getElementById('modbusForm');
+    <script>
+        // Fungsi untuk mengambil data dari ESP32
+        async function fetchData() {
+            try {
+                // Ubah URL ini dengan alamat IP ESP32 Anda
+                const response = await fetch('http://192.168.4.1/data/a');
+                
+                if (response.ok) {
+                    const data = await response.json();  // Ambil data dalam format JSON
+                    updateForm(data);  // Memperbarui form dengan data yang diterima
+                } else {
+                    console.error('Failed to fetch data:', response.status);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
 
-    // Dynamically create inputs
-    modbusVariables.forEach(variable => {
-      const div = document.createElement('div');
-      div.className = 'form-group';
+        // Fungsi untuk memperbarui form dengan data
+        function updateForm(data) {
+            data.forEach(item => {
+                // Pastikan shortName sesuai dengan ID input yang ada
+                const inputElement = document.getElementById('input-' + item.shortName);
+                if (inputElement) {
+                    inputElement.value = item.value;  // Masukkan nilai ke dalam input field
+                }
+            });
+        }
 
-      const label = document.createElement('label');
-      label.textContent = variable.name;
-
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.value = variable.value;
-      input.readOnly = true;
-
-      div.appendChild(label);
-      div.appendChild(input);
-      form.appendChild(div);
-    });
-  </script>
+        // Panggil fungsi fetchData setiap kali halaman dimuat
+        window.onload = function() {
+            fetchData();
+        };
+    </script>
 </body>
-
 </html>
