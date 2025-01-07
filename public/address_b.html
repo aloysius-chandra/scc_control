@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA - Data Modbus B</title>
+    <style>
+        /* Gaya untuk keseluruhan halaman */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Gaya judul */
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Gaya kontainer */
+        div {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            gap: 10px 20px;
+            margin: 20px;
+            padding: 20px;
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gaya label */
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Gaya input */
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f3f3f3;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        /* Gaya input readonly */
+        input[readonly] {
+            background-color: #e9ecef;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Modbus Data from ESP32</h1>
+    <div>
+        <label for="input-B1">B1</label>
+        <input type="text" id="input-B1" value="0" readonly>
+        <input type="text" id="new-B1" placeholder="New value">
+        <button onclick="sendToESP32('B1')">Send</button>
+
+        <label for="input-B2">B2</label>
+        <input type="text" id="input-B2" value="0" readonly>
+        <input type="text" id="new-B2" placeholder="New value">
+        <button onclick="sendToESP32('B2')">Send</button>
+
+        <!-- Lanjutkan pola ini untuk semua input -->
+        <label for="input-B3">B3</label>
+        <input type="text" id="input-B3" value="0" readonly>
+        <input type="text" id="new-B3" placeholder="New value">
+        <button onclick="sendToESP32('B3')">Send</button>
+
+        <label for="input-B4">B4</label>
+        <input type="text" id="input-B4" value="0" readonly>
+        <input type="text" id="new-B4" placeholder="New value">
+        <button onclick="sendToESP32('B4')">Send</button>
+
+        <label for="input-B5">B5</label>
+        <input type="text" id="input-B5" value="0" readonly>
+        <input type="text" id="new-B5" placeholder="New value">
+        <button onclick="sendToESP32('B5')">Send</button>
+
+        <label for="input-B6">B6</label>
+        <input type="text" id="input-B6" value="0" readonly>
+        <input type="text" id="new-B6" placeholder="New value">
+        <button onclick="sendToESP32('B6')">Send</button>
+
+        <label for="input-B7">B7</label>
+        <input type="text" id="input-B7" value="0" readonly>
+        <input type="text" id="new-B7" placeholder="New value">
+        <button onclick="sendToESP32('B7')">Send</button>
+
+        <label for="input-B8">B8</label>
+        <input type="text" id="input-B8" value="0" readonly>
+        <input type="text" id="new-B8" placeholder="New value">
+        <button onclick="sendToESP32('B8')">Send</button>
+
+        <label for="input-B9">B9</label>
+        <input type="text" id="input-B9" value="0" readonly>
+        <input type="text" id="new-B9" placeholder="New value">
+        <button onclick="sendToESP32('B9')">Send</button>
+
+        <label for="input-B10">B10</label>
+        <input type="text" id="input-B10" value="0" readonly>
+        <input type="text" id="new-B10" placeholder="New value">
+        <button onclick="sendToESP32('B10')">Send</button>
+
+        <label for="input-B11">B11</label>
+        <input type="text" id="input-B11" value="0" readonly>
+        <input type="text" id="new-B11" placeholder="New value">
+        <button onclick="sendToESP32('B11')">Send</button>
+
+        <label for="input-B12">B12</label>
+        <input type="text" id="input-B12" value="0" readonly>
+        <input type="text" id="new-B12" placeholder="New value">
+        <button onclick="sendToESP32('B12')">Send</button>
+
+        <label for="input-B13">B13</label>
+        <input type="text" id="input-B13" value="0" readonly>
+        <input type="text" id="new-B13" placeholder="New value">
+        <button onclick="sendToESP32('B13')">Send</button>
+
+        <label for="input-B14">B14</label>
+        <input type="text" id="input-B14" value="0" readonly>
+        <input type="text" id="new-B14" placeholder="New value">
+        <button onclick="sendToESP32('B14')">Send</button>
+
+        <label for="input-B15">B15</label>
+        <input type="text" id="input-B15" value="0" readonly>
+        <input type="text" id="new-B15" placeholder="New value">
+        <button onclick="sendToESP32('B15')">Send</button>
+
+        <label for="input-B16">B16</label>
+        <input type="text" id="input-B16" value="0" readonly>
+        <input type="text" id="new-B16" placeholder="New value">
+        <button onclick="sendToESP32('B16')">Send</button>
+
+        <label for="input-B17">B17</label>
+        <input type="text" id="input-B17" value="0" readonly>
+        <input type="text" id="new-B17" placeholder="New value">
+        <button onclick="sendToESP32('B17')">Send</button>
+
+        <label for="input-B18">B18</label>
+        <input type="text" id="input-B18" value="0" readonly>
+        <input type="text" id="new-B18" placeholder="New value">
+        <button onclick="sendToESP32('B18')">Send</button>
+
+        <label for="input-B19">B19</label>
+        <input type="text" id="input-B19" value="0" readonly>
+        <input type="text" id="new-B19" placeholder="New value">
+        <button onclick="sendToESP32('B19')">Send</button>
+
+        <label for="input-B20">B20</label>
+        <input type="text" id="input-B20" value="0" readonly>
+        <input type="text" id="new-B20" placeholder="New value">
+        <button onclick="sendToESP32('B20')">Send</button>
+
+        <label for="input-B21">B21</label>
+        <input type="text" id="input-B21" value="0" readonly>
+        <input type="text" id="new-B21" placeholder="New value">
+        <button onclick="sendToESP32('B21')">Send</button>
+
+        <label for="input-B22">B22</label>
+        <input type="text" id="input-B22" value="0" readonly>
+        <input type="text" id="new-B22" placeholder="New value">
+        <button onclick="sendToESP32('B22')">Send</button>
+
+        <label for="input-B23">B23</label>
+        <input type="text" id="input-B23" value="0" readonly>
+        <input type="text" id="new-B23" placeholder="New value">
+        <button onclick="sendToESP32('B23')">Send</button>
+
+        <label for="input-B24">B24</label>
+        <input type="text" id="input-B24" value="0" readonly>
+        <input type="text" id="new-B24" placeholder="New value">
+        <button onclick="sendToESP32('B24')">Send</button>
+
+        <label for="input-B25">B25</label>
+        <input type="text" id="input-B25" value="0" readonly>
+        <input type="text" id="new-B25" placeholder="New value">
+        <button onclick="sendToESP32('B25')">Send</button>
+    </div>
+
+    <script>
+        // Fungsi untuk mengambil data dari ESP32
+        async function fetchData() {
+            try {
+                const response = await fetch('http://192.168.4.1/data/b');
+
+                if (response.ok) {
+                    const data = await response.json();
+                    updateForm(data);
+                } else {
+                    console.error('Failed to fetch data:', response.status);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Fungsi untuk memperbarui form dengan data
+        function updateForm(data) {
+            data.forEach(item => {
+                const inputElement = document.getElementById('input-' + item.shortName);
+                if (inputElement) {
+                    inputElement.value = item.value;
+                }
+            });
+        }
+
+        // Fungsi button send
+        function sendToESP32(shortName) {
+            const newValue = document.getElementById(`new-${shortName}`).value;
+            if (newValue) {
+                // Buat HTTP request ke ESP32 dengan nilai baru
+                fetch(`http://192.168.4.1/update`, { // Ganti dengan IP ESP32 Anda
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(
+                        {
+                            shortName: shortName,
+                            value: newValue
+                        }),
+                })
+                    .then(response => {
+                        // Mengecek apakah response status adalah 200 (OK)
+                        if (response.ok) {
+                            return response.json();  // Mengambil response JSON dari ESP32
+                        } else {
+                            throw new Error('Failed to communicate with ESP32');
+                        }
+                    })
+                    .then(data => {
+                        // Menampilkan respons sukses dari ESP32
+                        // alert(`Successfully sent ${shortName} with value ${newValue}`);
+                        console.log("Response from ESP32:", data);
+                        if (data.status === 'success') {
+                            alert(`Data ${shortName} updated successfully!`);
+                        } else {
+                            alert(`Error: ${data.status}`);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert(`Failed to send ${id}`);
+                    });
+            } else {
+                alert('Please enter a new value before sending.');
+            }
+        }
+
+        // Panggil fungsi fetchData setiap kali halaman dimuat
+        window.onload = function () {
+            fetchData();
+        };
+
+
+    </script>
+</body>
+
+</html>

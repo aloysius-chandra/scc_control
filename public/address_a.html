@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA - Data Modbus A</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-container input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        .form-container input[readonly] {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Modbus Data from ESP32</h1>
+    <div class="form-container" id="data-form">
+      <label for="input-A1">A1</label>
+      <input type="text" id="input-A1" value="0" readonly>
+      
+      <label for="input-A2">A2</label>
+      <input type="text" id="input-A2" value="0" readonly>
+      
+      <label for="input-A3">A3</label>
+      <input type="text" id="input-A3" value="0" readonly>
+      
+      <label for="input-A4">A4</label>
+      <input type="text" id="input-A4" value="0" readonly>
+      
+      <label for="input-A5">A5</label>
+      <input type="text" id="input-A5" value="0" readonly>
+      
+      <label for="input-A7">A7</label>
+      <input type="text" id="input-A7" value="0" readonly>
+      
+      <label for="input-A8">A8</label>
+      <input type="text" id="input-A8" value="0" readonly>
+      
+      <label for="input-A9">A9</label>
+      <input type="text" id="input-A9" value="0" readonly>
+      
+      <label for="input-A11">A11</label>
+      <input type="text" id="input-A11" value="0" readonly>
+      
+      <label for="input-A12">A12</label>
+      <input type="text" id="input-A12" value="0" readonly>
+      
+      <label for="input-A13">A13</label>
+      <input type="text" id="input-A13" value="0" readonly>
+      
+      <label for="input-A14">A14</label>
+      <input type="text" id="input-A14" value="0" readonly>
+      
+      <label for="input-A15">A15</label>
+      <input type="text" id="input-A15" value="0" readonly>
+      
+      <label for="input-A16">A16</label>
+      <input type="text" id="input-A16" value="0" readonly>
+      
+      <label for="input-A17">A17</label>
+      <input type="text" id="input-A17" value="0" readonly>
+      
+      <label for="input-A18">A18</label>
+      <input type="text" id="input-A18" value="0" readonly>
+      
+      <label for="input-A19">A19</label>
+      <input type="text" id="input-A19" value="0" readonly>
+      
+      <label for="input-A20">A20</label>
+      <input type="text" id="input-A20" value="0" readonly>
+      
+      <label for="input-A22">A22</label>
+      <input type="text" id="input-A22" value="0" readonly>
+      
+      <label for="input-A24">A24</label>
+      <input type="text" id="input-A24" value="0" readonly>
+      
+      <label for="input-A26">A26</label>
+      <input type="text" id="input-A26" value="0" readonly>
+      
+      <label for="input-A28">A28</label>
+      <input type="text" id="input-A28" value="0" readonly>
+      
+      <label for="input-A30">A30</label>
+      <input type="text" id="input-A30" value="0" readonly>
+      
+      <label for="input-A32">A32</label>
+      <input type="text" id="input-A32" value="0" readonly>
+      
+      <label for="input-A34">A34</label>
+      <input type="text" id="input-A34" value="0" readonly>
+      
+      <label for="input-A36">A36</label>
+      <input type="text" id="input-A36" value="0" readonly>
+      
+      <label for="input-A37">A37</label>
+      <input type="text" id="input-A37" value="0" readonly>      
+    </div>
+
+    <script>
+        // Fungsi untuk mengambil data dari ESP32
+        async function fetchData() {
+            try {
+                // Ubah URL ini dengan alamat IP ESP32 Anda
+                const response = await fetch('http://192.168.4.1/data/a');
+                
+                if (response.ok) {
+                    const data = await response.json();  // Ambil data dalam format JSON
+                    updateForm(data);  // Memperbarui form dengan data yang diterima
+                } else {
+                    console.error('Failed to fetch data:', response.status);
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Fungsi untuk memperbarui form dengan data
+        function updateForm(data) {
+            data.forEach(item => {
+                // Pastikan shortName sesuai dengan ID input yang ada
+                const inputElement = document.getElementById('input-' + item.shortName);
+                if (inputElement) {
+                    inputElement.value = item.value;  // Masukkan nilai ke dalam input field
+                }
+            });
+        }
+
+        // Panggil fungsi fetchData setiap kali halaman dimuat
+        window.onload = function() {
+            fetchData();
+        };
+    </script>
+</body>
+</html>

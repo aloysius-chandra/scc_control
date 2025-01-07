@@ -12,6 +12,16 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Menangani route default
+app.get('/a', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'address_a.html'));
+});
+
+// Menangani route default
+app.get('/b', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'address_b.html'));
+});
+
 // Menjalankan server
 app.listen(PORT, () => {
   console.log(`Server berjalan di http://localhost:${PORT}`);
