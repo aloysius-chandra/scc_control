@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PWA - Data Modbus</title>
+
+    <link rel="manifest" href="manifest.json">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,7 +55,7 @@
 
         .form-container button {
             width: 25%;
-            
+
         }
     </style>
 </head>
@@ -65,22 +68,22 @@
 
         <label>Address Block B</label>
         <button onclick="navigateTo('/b')">B</button><br>
-        
+
         <label>Address Block C</label>
         <button onclick="navigateTo('/c')">C</button><br>
-        
+
         <label>Address Block D</label>
         <button onclick="navigateTo('/d')">D</button><br>
-        
+
         <label>Address Block E</label>
         <button onclick="navigateTo('/e')">E</button><br>
-        
+
         <label>Address Block F</label>
         <button onclick="navigateTo('/f')">F</button><br>
-        
+
         <label>Address Block G</label>
         <button onclick="navigateTo('/g')">G</button><br>
-        
+
         <label>Address Block H</label>
         <button onclick="navigateTo('/h')">H</button><br>
 
@@ -91,6 +94,13 @@
     <script>
         function navigateTo(path) {
             window.location.href = path;
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('/service-worker.js')
+                .then(() => console.log('Service Worker Registered'))
+                .catch((error) => console.error('Service Worker Registration Failed:', error));
         }
     </script>
 </body>
