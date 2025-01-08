@@ -23,21 +23,12 @@ self.addEventListener("install", (event) => {
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      // Jika permintaan adalah untuk navigasi halaman, fallback ke cache
-      if (event.request.mode === "navigate") {
-        return caches.match("/index.html");
-      }
-
-      // Coba fetch dari jaringan jika tidak ditemukan di cache
-      return fetch(event.request).catch(() => caches.match("/index.html"));
+      return (
+        cachedResponse || fetch(event.request).catch(() => caches.match("/"))
+      );
     })
   );
 });
-
 
 self.addEventListener("activate", (event) => {
   const cacheWhitelist = [CACHE_NAME];
