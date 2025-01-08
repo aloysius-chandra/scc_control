@@ -93,7 +93,9 @@
 
     <script>
         function navigateTo(path) {
-            window.location.href = path;
+            // Pastikan path lengkap jika menggunakan ESP32
+            const fullPath = `${window.location.origin}${path}`;
+            window.location.href = fullPath;
         }
 
         if ('serviceWorker' in navigator) {
