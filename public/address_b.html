@@ -219,48 +219,61 @@
             });
         }
 
-        // Fungsi button send
+        // Function to send data to ESP32
         function sendToESP32(shortName) {
             const newValue = document.getElementById(`new-${shortName}`).value;
             if (newValue) {
-                // Buat HTTP request ke ESP32 dengan nilai baru
-                fetch(`http://192.168.4.1/update`, { // Ganti dengan IP ESP32 Anda
+                // Ensure the value is in hexadecimal format (prepend "0x" if needed)
+                let formattedValue = newValue.trim(); // Trim any leading/trailing spaces
+                if (!formattedValue.startsWith("0x")) {
+                    formattedValue = "0x" + formattedValue;
+                }
+
+                // Create the body of the request
+                const requestBody = {
+                    shortName: shortName,
+                    value: formattedValue,
+                };
+
+                // Log the request body for debugging
+                console.log("Request Body:", requestBody);
+
+                // Send HTTP POST request to ESP32
+                fetch(`http://192.168.4.1/update`, { // Replace with your ESP32's IP
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(
-                        {
-                            shortName: shortName,
-                            value: newValue
-                        }),
+                    body: JSON.stringify(requestBody),
                 })
                     .then(response => {
-                        // Mengecek apakah response status adalah 200 (OK)
+                        // Check if the response status is OK (200)
                         if (response.ok) {
-                            return response.json();  // Mengambil response JSON dari ESP32
+                            return response.json(); // Parse JSON response from ESP32
                         } else {
-                            throw new Error('Failed to communicate with ESP32');
+                            throw new Error(`ESP32 responded with status: ${response.status}`);
                         }
                     })
                     .then(data => {
-                        // Menampilkan respons sukses dari ESP32
-                        // alert(`Successfully sent ${shortName} with value ${newValue}`);
+                        // Log the response from ESP32
                         console.log("Response from ESP32:", data);
+
+                        // Handle success or error in response
                         if (data.status === 'success') {
                             alert(`Data ${shortName} updated successfully!`);
                         } else {
-                            alert(`Error: ${data.status}`);
+                            alert(`Error updating ${shortName}: ${data.status}`);
                         }
                     })
                     .catch(error => {
                         console.error('Error:', error);
-                        alert(`Failed to send ${id}`);
+                        alert(`Failed to send ${shortName}. Error: ${error.message}`);
                     });
             } else {
                 alert('Please enter a new value before sending.');
             }
         }
+
 
         // Panggil fungsi fetchData setiap kali halaman dimuat
         window.onload = function () {
