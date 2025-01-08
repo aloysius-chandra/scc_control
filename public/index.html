@@ -64,10 +64,10 @@
     <h1>Modbus Data from ESP32</h1>
     <div class="form-container" id="menu">
         <label>Address Block A</label>
-        <button onclick="navigateTo('/a')">A</button><br>
+        <button onclick="navigateTo('/address_a.html')">A</button><br>
 
         <label>Address Block B</label>
-        <button onclick="navigateTo('/b')">B</button><br>
+        <button onclick="navigateTo('/address_b.html')">B</button><br>
 
         <label>Address Block C</label>
         <button onclick="navigateTo('/c')">C</button><br>
@@ -94,8 +94,7 @@
     <script>
         function navigateTo(path) {
             // Pastikan path lengkap jika menggunakan ESP32
-            const fullPath = `${window.location.origin}${path}`;
-            window.location.href = fullPath;
+            window.location.href = path;
         }
 
         if ('serviceWorker' in navigator) {
